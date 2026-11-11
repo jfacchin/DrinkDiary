@@ -1,0 +1,4 @@
+<resources>
+    <!-- Material 3 base theme for the whole app. -->
+    <style name="Theme.DrinkDiary" parent="Theme.Material3.DayNight.NoActionBar" />
+</resources>

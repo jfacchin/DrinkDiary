@@ -1,0 +1,12 @@
+# Normalize line endings so teammates on Windows and macOS don't get noisy diffs.
+* text=auto
+
+# Shell script must keep LF or it fails on macOS/Linux; batch file must keep CRLF.
+gradlew text eol=lf
+*.bat text eol=crlf
+
+# Binary files
+*.jar binary
+*.png binary
+*.jpg binary
+*.webp binary
