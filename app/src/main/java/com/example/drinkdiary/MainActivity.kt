@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.drinkdiary.databinding.ActivityMainBinding
+import android.content.Intent
+
 
 /**
  * Entry point of the app. Will later host the diary list and drink detail fragments.
@@ -19,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.addDrinkButton.setOnClickListener {
+            val intent = Intent(this, AddDrinkActivity::class.java)
+            startActivity(intent)
+        }
 
         // Pad the root view so content isn't drawn under the status/navigation bars.
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
@@ -28,3 +34,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+
