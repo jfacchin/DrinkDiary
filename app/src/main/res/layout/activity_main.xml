@@ -31,6 +31,13 @@
             android:layout_weight="1"
             android:text="Drink Details" />
 
+        <Button
+            android:id="@+id/addDrinkButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add Drink" />
+
     </LinearLayout>
 
 </LinearLayout>

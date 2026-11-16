@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.drinkdiary.databinding.ActivityMainBinding
+import android.content.Intent
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.addDrinkButton.setOnClickListener {
+            val intent = Intent(this, AddDrinkActivity::class.java)
+            startActivity(intent)
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val bars = insets.getInsets(
@@ -46,3 +52,5 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 }
+
+
