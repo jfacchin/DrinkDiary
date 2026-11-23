@@ -1,5 +1,6 @@
 package com.example.drinkdiary
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +8,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.drinkdiary.databinding.ActivityMainBinding
-import android.content.Intent
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,16 +19,19 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.addDrinkButton.setOnClickListener {
-            val intent = Intent(this, AddDrinkActivity::class.java)
-            startActivity(intent)
-        }
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val bars = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
             )
-            v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+
+            view.setPadding(
+                bars.left,
+                bars.top,
+                bars.right,
+                bars.bottom
+            )
+
             insets
         }
 
@@ -41,8 +43,19 @@ class MainActivity : AppCompatActivity() {
             showFragment(DiaryListFragment())
         }
 
-        binding.btnDrinkDetail.setOnClickListener {
-            showFragment(DrinkDetailFragment())
+        binding.addDrinkButton.setOnClickListener {
+            val intent = Intent(this, AddDrinkActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.buttonWouldOrderAgain.setOnClickListener {
+            val filteredDiary = DiaryListFragment().apply {
+                arguments = Bundle().apply {
+                    putBoolean("showOnlyWouldOrderAgain", true)
+                }
+            }
+
+            showFragment(filteredDiary)
         }
     }
 
@@ -52,5 +65,4 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 }
-
 

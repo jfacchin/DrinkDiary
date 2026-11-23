@@ -1,3 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.DrinkDiary" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <!-- Keep the Drink Diary mockup appearance in dark mode too. -->
+    <style name="Theme.DrinkDiary" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/drink_caramel</item>
+        <item name="colorOnPrimary">@color/drink_white</item>
+
+        <item name="colorSecondary">@color/drink_sage</item>
+        <item name="colorOnSecondary">@color/drink_brown</item>
+
+        <item name="android:colorBackground">@color/drink_cream</item>
+        <item name="colorSurface">@color/drink_tan</item>
+        <item name="colorOnSurface">@color/drink_brown</item>
+        <item name="fontFamily">sans-serif-rounded</item>
+
+        <item name="colorError">@color/drink_favorite_red</item>
+        <item name="colorOnError">@color/drink_white</item>
+
+        <item name="android:statusBarColor">@color/drink_cream</item>
+        <item name="android:navigationBarColor">@color/drink_tan</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+    </style>
+
 </resources>
