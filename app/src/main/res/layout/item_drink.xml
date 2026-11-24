@@ -7,10 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="182dp"
     android:layout_margin="7dp"
+    android:clickable="true"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
 
-    <!-- Outer tan drink card -->
+    <!-- Original outer tan drink card -->
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/drinkOuterCard"
@@ -28,7 +31,7 @@
             android:layout_height="match_parent"
             android:padding="10dp">
 
-            <!-- Drink photo -->
+            <!-- Original drink photo -->
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/drinkImageCard"
@@ -53,13 +56,14 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Drink name -->
+            <!-- Required adapter ID: drinkName -->
 
             <TextView
-                android:id="@+id/drinkNameText"
+                android:id="@+id/drinkName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:maxLines="2"
                 android:textColor="@color/drink_brown"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -68,25 +72,57 @@
                 app:layout_constraintTop_toTopOf="@id/drinkImageCard"
                 tools:text="Earl Grey Matcha" />
 
-            <!-- Cafe name -->
+            <!-- Required adapter ID: drinkCafe -->
 
             <TextView
-                android:id="@+id/drinkCafeText"
+                android:id="@+id/drinkCafe"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
+                android:maxLines="1"
                 android:textColor="@color/drink_brown"
                 android:textSize="11sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/drinkImageCard"
-                app:layout_constraintTop_toBottomOf="@id/drinkNameText"
+                app:layout_constraintTop_toBottomOf="@id/drinkName"
                 tools:text="Tastea Cafe" />
 
-            <!-- Rating -->
+            <!-- Required adapter ID: drinkType -->
 
             <TextView
-                android:id="@+id/drinkRatingText"
+                android:id="@+id/drinkType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:maxLines="1"
+                android:textColor="@color/drink_caramel_dark"
+                android:textSize="10sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/drinkImageCard"
+                app:layout_constraintTop_toBottomOf="@id/drinkCafe"
+                tools:text="Matcha" />
+
+            <!-- Required adapter ID: drinkPrice -->
+
+            <TextView
+                android:id="@+id/drinkPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/drink_brown"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/drinkRating"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="$8.50" />
+
+            <!-- Required adapter ID: drinkRating -->
+
+            <TextView
+                android:id="@+id/drinkRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
@@ -95,9 +131,9 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="4.5 / 5" />
+                tools:text="★★★★☆" />
 
-            <!-- Would order again -->
+            <!-- Original Would Order Again indicator -->
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/wouldOrderAgainCard"
@@ -114,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="✓"
+                    android:text="&#10003;"
                     android:textColor="@color/drink_brown"
                     android:textSize="23sp"
                     android:textStyle="bold" />
@@ -125,13 +161,14 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Separate ribbon layered across the outer card border -->
+    <!-- Original ribbon -->
 
     <ImageView
         android:id="@+id/drinkRibbon"
         android:layout_width="88dp"
         android:layout_height="23dp"
         android:elevation="20dp"
+        android:importantForAccessibility="no"
         android:rotation="-7"
         android:scaleType="fitXY"
         android:src="@drawable/ribbon"

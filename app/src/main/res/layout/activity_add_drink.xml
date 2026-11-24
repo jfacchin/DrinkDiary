@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/drink_cream">
 
-    <!-- Scrollable form -->
     <ScrollView
         android:id="@+id/formScrollView"
         android:layout_width="0dp"
@@ -49,13 +50,42 @@
                     android:orientation="vertical"
                     android:padding="18dp">
 
-                    <!-- Photo and main information -->
+                    <!-- Teammate drink-type Spinner, styled to match -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:text="Drink Type"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="14dp"
+                        app:cardBackgroundColor="@color/drink_caramel"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp">
+
+                        <Spinner
+                            android:id="@+id/drink_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Original photo and information arrangement -->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
-                        <!-- Photo placeholder with longer slanted ribbon -->
+
                         <FrameLayout
                             android:layout_width="130dp"
                             android:layout_height="145dp"
@@ -63,7 +93,6 @@
                             android:clipChildren="false"
                             android:clipToPadding="false">
 
-                            <!-- Photo box -->
                             <com.google.android.material.card.MaterialCardView
                                 android:layout_width="104dp"
                                 android:layout_height="125dp"
@@ -84,7 +113,6 @@
 
                             </com.google.android.material.card.MaterialCardView>
 
-                            <!-- Longer and more slanted polka-dot ribbon -->
                             <ImageView
                                 android:layout_width="120dp"
                                 android:layout_height="32dp"
@@ -94,12 +122,11 @@
                                 android:rotation="-14"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/ribbon"
-                                android:translationY="10dp"
-                                android:translationX="-6dp" />
+                                android:translationX="-6dp"
+                                android:translationY="10dp" />
 
                         </FrameLayout>
 
-                        <!-- Name, cafe and price -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -177,7 +204,8 @@
 
                     </LinearLayout>
 
-                    <!-- Notes -->
+                    <!-- Original Notes -->
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -202,12 +230,13 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Rating -->
+                    <!-- Original Rating -->
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        android:hint="Rating from 1–5"
+                        android:hint="Rating from 1-5"
                         app:boxBackgroundColor="@color/drink_caramel"
                         app:boxCornerRadiusBottomEnd="24dp"
                         app:boxCornerRadiusBottomStart="24dp"
@@ -226,16 +255,36 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Would order again -->
-                    <CheckBox
-                        android:id="@+id/checkBoxWouldOrderAgain"
-                        android:layout_width="wrap_content"
+                    <!-- Teammate allergen group, styled to match -->
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Select Allergens"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/allergenGroup"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:buttonTint="@color/drink_caramel_dark"
+                        app:selectionRequired="false"
+                        app:singleSelection="false" />
+
+                    <!-- Exact teammate Switch type and ID -->
+
+                    <Switch
+                        android:id="@+id/woaSwitch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:text="I would order this drink again"
                         android:textColor="@color/drink_brown"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 </LinearLayout>
 
@@ -245,7 +294,8 @@
 
     </ScrollView>
 
-    <!-- Fixed bottom bar -->
+    <!-- Original fixed bottom bar -->
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomButtonBar"
         android:layout_width="0dp"

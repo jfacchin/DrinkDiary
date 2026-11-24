@@ -1,102 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/drink_cream"
-    android:clipChildren="false">
-
-    <!-- Fragments appear here -->
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="1" />
 
-    <!-- Permanent bottom navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/bottomNavigationBar"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        app:cardBackgroundColor="@color/drink_tan"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        <Button
+            android:id="@+id/btnDiaryList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="My Diary" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btnDrinkDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Drink Details" />
 
-            <!-- Home -->
+        <Button
+            android:id="@+id/addDrinkButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add Drink" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDiaryList"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="72dp"
-                android:layout_height="52dp"
-                android:contentDescription="Home"
-                android:minWidth="0dp"
-                android:text="⌂"
-                android:textColor="@color/drink_caramel"
-                android:textSize="30sp"
-                app:backgroundTint="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
-            <!-- Would Order Again -->
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonWouldOrderAgain"
-                android:layout_width="126dp"
-                android:layout_height="44dp"
-                android:layout_marginEnd="14dp"
-                android:contentDescription="Would order again drinks"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:text="✓  Again"
-                android:textAllCaps="false"
-                android:textColor="@color/drink_brown"
-                android:textSize="15sp"
-                app:backgroundTint="@color/drink_caramel"
-                app:cornerRadius="22dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Add Drink -->
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addDrinkButton"
-        android:layout_width="68dp"
-        android:layout_height="68dp"
-        android:contentDescription="Add a drink"
-        android:elevation="10dp"
-        android:gravity="center"
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:padding="0dp"
-        android:text="+"
-        android:textColor="@color/drink_white"
-        android:textSize="40sp"
-        android:translationY="-24dp"
-        app:backgroundTint="@color/drink_caramel"
-        app:cornerRadius="34dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bottomNavigationBar" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
