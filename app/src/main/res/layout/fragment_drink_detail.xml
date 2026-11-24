@@ -1,102 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/drink_cream">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+    <ScrollView
+        android:id="@+id/detailScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/detailBottomBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back to Diary" />
-
-        <ImageView
-            android:id="@+id/detailPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="Drink photo"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/detailName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp">
 
-        <TextView
-            android:id="@+id/detailRating"
+            <TextView
+                android:id="@+id/detailTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drink Details"
+                android:textColor="@color/drink_brown"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <!-- Original watercolor and photo treatment -->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginTop="6dp">
+
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="145dp"
+                    android:layout_gravity="center"
+                    android:alpha="0.85"
+                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/watercolor_swoosh_wide" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="105dp"
+                    android:layout_height="135dp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="@color/drink_sage"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="0dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- Placeholder shown when no saved photo exists -->
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:importantForAccessibility="no"
+                            android:padding="20dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_launcher_foreground"
+                            app:tint="@color/drink_brown" />
+
+                        <!-- Required saved-photo ID -->
+
+                        <ImageView
+                            android:id="@+id/detailPhoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="Drink photo"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+                    </FrameLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </FrameLayout>
+
+            <!-- Original rounded information-card style -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/detailInformationCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/drink_tan"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/drink_sage"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <!-- Original delete-button styling -->
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonDeleteDrink"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_gravity="end"
+                        android:contentDescription="Delete drink"
+                        android:gravity="center"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:padding="0dp"
+                        android:text="&#215;"
+                        android:textColor="@color/drink_white"
+                        android:textSize="27sp"
+                        app:backgroundTint="@color/drink_caramel"
+                        app:cornerRadius="22dp" />
+
+                    <!-- Required drink-name ID -->
+
+                    <TextView
+                        android:id="@+id/detailName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        tools:text="Earl Grey Matcha" />
+
+                    <!-- Required rating ID -->
+
+                    <TextView
+                        android:id="@+id/detailRating"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="★★★★☆" />
+
+                    <!-- Required cafe ID -->
+
+                    <TextView
+                        android:id="@+id/detailCafe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="15sp"
+                        tools:text="Cafe: Tastea Cafe" />
+
+                    <!-- Required type ID -->
+
+                    <TextView
+                        android:id="@+id/detailType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="15sp"
+                        tools:text="Type: Matcha" />
+
+                    <!-- Required price ID -->
+
+                    <TextView
+                        android:id="@+id/detailPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="15sp"
+                        tools:text="Price: $8.50" />
+
+                    <!-- Styled Notes and Would Order Again row -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/detailNotesCard"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            app:cardBackgroundColor="@color/drink_caramel"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="0dp">
+
+                            <!-- Required notes ID -->
+
+                            <TextView
+                                android:id="@+id/detailNotes"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:maxLines="5"
+                                android:padding="12dp"
+                                android:textColor="@color/drink_white"
+                                android:textSize="12sp"
+                                tools:text="Notes: Nice Earl Grey flavor" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/detailWouldOrderAgainCard"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            app:cardBackgroundColor="@color/drink_sage"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="0dp">
+
+                            <!-- Required Would Order Again ID -->
+
+                            <TextView
+                                android:id="@+id/detailOrderAgain"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:textColor="@color/drink_brown"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                tools:text="Would order again: Yes" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                    <!-- Required allergens ID -->
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        app:cardBackgroundColor="@color/drink_sage"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:id="@+id/detailAllergens"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="14dp"
+                            android:textColor="@color/drink_brown"
+                            android:textSize="14sp"
+                            tools:text="Allergens: None recorded" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Required GPS location ID -->
+
+                    <TextView
+                        android:id="@+id/detailLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="13sp"
+                        tools:text="Location: Not added" />
+
+                    <!-- Required date ID -->
+
+                    <TextView
+                        android:id="@+id/detailDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/drink_caramel_dark"
+                        android:textSize="12sp"
+                        tools:text="Added: November 23, 2026" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Original bottom action bar -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/detailBottomBar"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        app:cardBackgroundColor="@color/drink_tan"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp">
 
-        <TextView
-            android:id="@+id/detailCafe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp" />
+            <!-- Their functional Back button -->
 
-        <TextView
-            android:id="@+id/detailType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="18sp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBack"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="Back to Diary"
+                android:textAllCaps="false"
+                android:textColor="@color/drink_brown"
+                android:textSize="14sp"
+                app:backgroundTint="@color/drink_caramel"
+                app:cornerRadius="22dp" />
 
-        <TextView
-            android:id="@+id/detailPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="18sp" />
+            <!-- Original Edit visual button -->
 
-        <TextView
-            android:id="@+id/detailOrderAgain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="18sp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonEditDrink"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="Edit"
+                android:textAllCaps="false"
+                android:textColor="@color/drink_brown"
+                android:textSize="15sp"
+                app:backgroundTint="@color/drink_caramel"
+                app:cornerRadius="22dp" />
 
-        <TextView
-            android:id="@+id/detailAllergens"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="18sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/detailNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="18sp" />
+    </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/detailLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/detailDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

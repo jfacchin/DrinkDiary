@@ -1,57 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_height="182dp"
+    android:layout_margin="7dp"
     android:clickable="true"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:focusable="true"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="3dp">
+    android:foreground="?attr/selectableItemBackground">
 
-    <LinearLayout
+    <!-- Original outer tan drink card -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/drinkOuterCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="170dp"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="@color/drink_tan"
+        app:cardCornerRadius="26dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/drinkName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/drinkCafe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="16sp" />
+            <!-- Original drink photo -->
 
-        <TextView
-            android:id="@+id/drinkType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/drinkImageCard"
+                android:layout_width="58dp"
+                android:layout_height="82dp"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/drink_sage"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/drinkPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/drinkImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Drink photo"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_launcher_foreground"
+                    app:tint="@color/drink_brown" />
 
-        <TextView
-            android:id="@+id/drinkRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="18sp" />
+            </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+            <!-- Required adapter ID: drinkName -->
 
-</com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/drinkName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:maxLines="2"
+                android:textColor="@color/drink_brown"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/drinkImageCard"
+                app:layout_constraintTop_toTopOf="@id/drinkImageCard"
+                tools:text="Earl Grey Matcha" />
+
+            <!-- Required adapter ID: drinkCafe -->
+
+            <TextView
+                android:id="@+id/drinkCafe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:maxLines="1"
+                android:textColor="@color/drink_brown"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/drinkImageCard"
+                app:layout_constraintTop_toBottomOf="@id/drinkName"
+                tools:text="Tastea Cafe" />
+
+            <!-- Required adapter ID: drinkType -->
+
+            <TextView
+                android:id="@+id/drinkType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:maxLines="1"
+                android:textColor="@color/drink_caramel_dark"
+                android:textSize="10sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/drinkImageCard"
+                app:layout_constraintTop_toBottomOf="@id/drinkCafe"
+                tools:text="Matcha" />
+
+            <!-- Required adapter ID: drinkPrice -->
+
+            <TextView
+                android:id="@+id/drinkPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/drink_brown"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/drinkRating"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="$8.50" />
+
+            <!-- Required adapter ID: drinkRating -->
+
+            <TextView
+                android:id="@+id/drinkRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/drink_brown"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="★★★★☆" />
+
+            <!-- Original Would Order Again indicator -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/wouldOrderAgainCard"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                app:cardBackgroundColor="@color/drink_sage"
+                app:cardCornerRadius="21dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/wouldOrderAgainText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="&#10003;"
+                    android:textColor="@color/drink_brown"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Original ribbon -->
+
+    <ImageView
+        android:id="@+id/drinkRibbon"
+        android:layout_width="88dp"
+        android:layout_height="23dp"
+        android:elevation="20dp"
+        android:importantForAccessibility="no"
+        android:rotation="-7"
+        android:scaleType="fitXY"
+        android:src="@drawable/ribbon"
+        android:translationY="11dp"
+        android:translationZ="20dp"
+        app:layout_constraintBottom_toTopOf="@id/drinkOuterCard"
+        app:layout_constraintEnd_toEndOf="@id/drinkOuterCard"
+        app:layout_constraintStart_toStartOf="@id/drinkOuterCard" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

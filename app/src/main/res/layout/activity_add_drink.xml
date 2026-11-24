@@ -1,112 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/drink_cream">
 
+    <ScrollView
+        android:id="@+id/formScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtonBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:text="Add a Drink!"
+                android:textColor="@color/drink_brown"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/drink_tan"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <!-- Teammate drink-type Spinner, styled to match -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:text="Drink Type"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="14dp"
+                        app:cardBackgroundColor="@color/drink_caramel"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp">
+
+                        <Spinner
+                            android:id="@+id/drink_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Original photo and information arrangement -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="130dp"
+                            android:layout_height="145dp"
+                            android:layout_marginEnd="8dp"
+                            android:clipChildren="false"
+                            android:clipToPadding="false">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="104dp"
+                                android:layout_height="125dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                app:cardBackgroundColor="@color/drink_sage"
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp">
+
+                                <ImageView
+                                    android:id="@+id/imageDrinkPhoto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:contentDescription="Choose drink photo"
+                                    android:padding="24dp"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/ic_launcher_foreground"
+                                    app:tint="@color/drink_brown" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <ImageView
+                                android:layout_width="120dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="top|center_horizontal"
+                                android:elevation="4dp"
+                                android:importantForAccessibility="no"
+                                android:rotation="-14"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/ribbon"
+                                android:translationX="-6dp"
+                                android:translationY="10dp" />
+
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Drink name"
+                                app:boxBackgroundColor="@color/drink_caramel"
+                                app:boxCornerRadiusBottomEnd="24dp"
+                                app:boxCornerRadiusBottomStart="24dp"
+                                app:boxCornerRadiusTopEnd="24dp"
+                                app:boxCornerRadiusTopStart="24dp"
+                                app:boxStrokeWidth="0dp"
+                                app:hintTextColor="@color/drink_cream">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/editTextDrinkName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textCapWords"
+                                    android:textColor="@color/drink_white" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:hint="Cafe name"
+                                app:boxBackgroundColor="@color/drink_caramel"
+                                app:boxCornerRadiusBottomEnd="24dp"
+                                app:boxCornerRadiusBottomStart="24dp"
+                                app:boxCornerRadiusTopEnd="24dp"
+                                app:boxCornerRadiusTopStart="24dp"
+                                app:boxStrokeWidth="0dp"
+                                app:hintTextColor="@color/drink_cream">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/editTextCafe"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="textCapWords"
+                                    android:textColor="@color/drink_white" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:hint="Price"
+                                app:boxBackgroundColor="@color/drink_caramel"
+                                app:boxCornerRadiusBottomEnd="24dp"
+                                app:boxCornerRadiusBottomStart="24dp"
+                                app:boxCornerRadiusTopEnd="24dp"
+                                app:boxCornerRadiusTopStart="24dp"
+                                app:boxStrokeWidth="0dp"
+                                app:hintTextColor="@color/drink_cream"
+                                app:prefixText="$"
+                                app:prefixTextColor="@color/drink_cream">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/editTextPrice"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"
+                                    android:textColor="@color/drink_white" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Original Notes -->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:hint="Notes"
+                        app:boxBackgroundColor="@color/drink_caramel"
+                        app:boxCornerRadiusBottomEnd="24dp"
+                        app:boxCornerRadiusBottomStart="24dp"
+                        app:boxCornerRadiusTopEnd="24dp"
+                        app:boxCornerRadiusTopStart="24dp"
+                        app:boxStrokeWidth="0dp"
+                        app:hintTextColor="@color/drink_cream">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextNotes"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:gravity="top|start"
+                            android:inputType="textMultiLine"
+                            android:maxLines="4"
+                            android:textColor="@color/drink_white" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Original Rating -->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:hint="Rating from 1-5"
+                        app:boxBackgroundColor="@color/drink_caramel"
+                        app:boxCornerRadiusBottomEnd="24dp"
+                        app:boxCornerRadiusBottomStart="24dp"
+                        app:boxCornerRadiusTopEnd="24dp"
+                        app:boxCornerRadiusTopStart="24dp"
+                        app:boxStrokeWidth="0dp"
+                        app:hintTextColor="@color/drink_cream">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextRating"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:textColor="@color/drink_white" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Teammate allergen group, styled to match -->
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Select Allergens"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/allergenGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:selectionRequired="false"
+                        app:singleSelection="false" />
+
+                    <!-- Exact teammate Switch type and ID -->
+
+                    <Switch
+                        android:id="@+id/woaSwitch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="I would order this drink again"
+                        android:textColor="@color/drink_brown"
+                        android:textSize="15sp"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Original fixed bottom bar -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottomButtonBar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        >
+        app:cardBackgroundColor="@color/drink_tan"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="Add a Drink"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/drink_type"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             />
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="10dp">
 
-        <EditText
-            android:id="@+id/editTextDrinkName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Drink name"
-            android:inputType="textCapWords" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonCancel"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:textColor="@color/drink_brown"
+                app:cornerRadius="24dp"
+                app:strokeColor="@color/drink_caramel" />
 
-        <EditText
-            android:id="@+id/editTextCafe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Café"
-            android:inputType="textCapWords" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSaveDrink"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/drink_caramel"
+                android:text="Save"
+                android:textColor="@color/drink_white"
+                app:cornerRadius="24dp" />
 
-        <EditText
-            android:id="@+id/editTextPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Price"
-            android:inputType="numberDecimal" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/editTextRating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Rating from 1–5"
-            android:inputType="number" />
+    </com.google.android.material.card.MaterialCardView>
 
-        <!-- edit notes section -->
-        <EditText
-            android:id="@+id/editTextNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Notes (Optional)"
-            android:inputType="textMultiLine"
-            android:minLines="2"
-            android:layout_gravity="top|start"
-            />
-        <!-- text for before the allergen selection -->
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-        android:text="Select Allergens"
-
-       />
-<!-- implementing the chip group for the allergen section-->
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/allergenGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:singleSelection="false"
-            app:selectionRequired="false"/>
-
-
-     <!-- save button -->
-
-        <Button
-            android:id="@+id/buttonSaveDrink"
-            android:layout_width="357dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Save Drink" />
-
-        <Switch
-            android:id="@+id/woaSwitch"
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Would Order Again"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

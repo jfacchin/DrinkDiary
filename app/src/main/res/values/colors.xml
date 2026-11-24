@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Drink Diary palette -->
+    <color name="drink_cream">#FFF8DD</color>
+    <color name="drink_tan">#EBC9A8</color>
+    <color name="drink_caramel">#C98560</color>
+    <color name="drink_caramel_dark">#A96549</color>
+    <color name="drink_sage">#D5DDB5</color>
+    <color name="drink_brown">#5A4032</color>
+
+    <!-- Icons and details -->
+    <color name="drink_favorite_red">#D52B2B</color>
+    <color name="drink_heart_inactive">#A6ADB0</color>
+    <color name="drink_white">#FFFFFF</color>
+    <color name="drink_black">#1F1F1F</color>
+
+</resources>

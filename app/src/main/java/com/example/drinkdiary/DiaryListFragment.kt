@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.drinkdiary.databinding.FragmentDiaryListBinding
 
 class DiaryListFragment : Fragment(R.layout.fragment_diary_list) {
@@ -33,7 +33,7 @@ class DiaryListFragment : Fragment(R.layout.fragment_diary_list) {
 
         // Set up the RecyclerView
         binding.drinkRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext())
+            GridLayoutManager(requireContext(), 2)
 
         binding.drinkRecyclerView.adapter = adapter
 

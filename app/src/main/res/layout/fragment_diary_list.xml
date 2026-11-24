@@ -1,35 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/drink_cream">
+
+    <!-- Your screen title -->
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/diaryTitleText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Drink Diary"
-        android:textSize="28sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        android:text="My Drinks"
+        android:textColor="@color/drink_brown"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/emptyMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No drinks saved yet. Add your first drink!"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:padding="24dp" />
+    <!-- Your watercolor background -->
+
+    <ImageView
+        android:id="@+id/topWatercolorSwoosh"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        android:alpha="1.0"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        android:src="@drawable/watercolor_swoosh_wide"
+        android:translationX="-22dp"
+        android:translationY="-5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diaryTitleText" />
+
+    <!-- Their required RecyclerView ID -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/drinkRecyclerView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:clipToPadding="false"
-        android:paddingBottom="8dp" />
+        android:paddingStart="18dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diaryTitleText"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_drink" />
 
-</LinearLayout>
+    <!-- Their required empty-message ID and text -->
+
+    <TextView
+        android:id="@+id/emptyMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="No drinks saved yet. Add your first drink!"
+        android:textColor="@color/drink_brown"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diaryTitleText"
+        tools:visibility="gone" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
