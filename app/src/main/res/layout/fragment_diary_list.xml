@@ -4,22 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:padding="16dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="My Drink Diary"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/emptyMessage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your saved drinks will appear here!"
+        android:text="No drinks saved yet. Add your first drink!"
         android:textSize="16sp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:padding="24dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/drinkRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
 
 </LinearLayout>
