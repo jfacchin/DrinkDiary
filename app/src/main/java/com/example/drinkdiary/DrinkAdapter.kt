@@ -1,6 +1,7 @@
 package com.example.drinkdiary
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.drinkdiary.data.Drink
@@ -45,6 +46,10 @@ class DrinkAdapter(
         holder.binding.drinkName.text = drink.name
         holder.binding.drinkCafe.text = drink.cafe
         holder.binding.drinkType.text = drink.type
+
+        // Only show the badge if the user would order this drink again
+        holder.binding.wouldOrderAgainCard.visibility =
+            if (drink.wouldOrderAgain) View.VISIBLE else View.GONE
 
         holder.binding.drinkPrice.text =
             String.format(Locale.US, "$%.2f", drink.price)
