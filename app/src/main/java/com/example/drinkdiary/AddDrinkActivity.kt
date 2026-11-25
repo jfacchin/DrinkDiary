@@ -1,5 +1,6 @@
 package com.example.drinkdiary
 
+import android.widget.TextView
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -44,10 +45,12 @@ class AddDrinkActivity : AppCompatActivity() {
         val cafe_Name = findViewById<EditText>(R.id.editTextCafe)
         val price_Input = findViewById<EditText>(R.id.editTextPrice)
         val save_Button = findViewById<Button>(R.id.buttonSaveDrink)
+        val cancel_Button = findViewById<Button>(R.id.buttonCancel)
         val notes_Input = findViewById<EditText>(R.id.editTextNotes)
         val allergen_Group = findViewById<ChipGroup>(R.id.allergenGroup)
         val drink_rating = findViewById<EditText>(R.id.editTextRating)
         val switchSelection = findViewById<Switch>(R.id.woaSwitch)
+        val editMode = intent.getBooleanExtra("editMode", false)
 
 //populating chips from ALLERGENS via data layer
         Drink.ALLERGENS.forEach { allergen ->
@@ -56,6 +59,49 @@ class AddDrinkActivity : AppCompatActivity() {
             chip.isCheckable = true
             chip.id = View.generateViewId()
             allergen_Group.addView(chip)
+        }
+
+        // Populate existing drink information when editing
+        if (editMode && savedInstanceState == null) {
+            drink_NameInput.setText(intent.getStringExtra("drink_NameInput"))
+            cafe_Name.setText(intent.getStringExtra("cafe_name"))
+            price_Input.setText(
+                intent.getDoubleExtra("price_Input", 0.0).toString()
+            )
+            drink_rating.setText(
+                intent.getIntExtra("drink_rating", 0).toString()
+            )
+            notes_Input.setText(intent.getStringExtra("notes_Input"))
+
+            switchSelection.isChecked =
+                intent.getBooleanExtra("switchSelection", false)
+
+            val savedType = intent.getStringExtra("drink_typeSpinner")
+            val typePosition = Drink.TYPES.indexOf(savedType)
+
+            if (typePosition >= 0) {
+                drink_typeSpinner.setSelection(typePosition)
+            }
+
+            val savedAllergens =
+                intent.getStringArrayListExtra("allergen_Group")
+                    ?: arrayListOf<String>()
+
+            for (i in 0 until allergen_Group.childCount) {
+                val chip = allergen_Group.getChildAt(i) as Chip
+                chip.isChecked = chip.text.toString() in savedAllergens
+            }
+        }
+
+        if (editMode) {
+            findViewById<TextView>(R.id.formTitle).text = "Edit Drink"
+            save_Button.text = "Save Changes"
+        }
+
+        // Cancel the form and return without saving a drink
+        cancel_Button.setOnClickListener {
+            setResult(RESULT_CANCELED)
+            finish()
         }
 
         save_Button.setOnClickListener {

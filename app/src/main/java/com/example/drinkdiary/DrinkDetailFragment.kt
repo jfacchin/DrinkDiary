@@ -1,5 +1,8 @@
 package com.example.drinkdiary
 
+import android.content.Intent
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -13,6 +16,35 @@ import java.util.Locale
 class DrinkDetailFragment : Fragment(R.layout.fragment_drink_detail) {
 
     private val viewModel: DrinkViewModel by activityViewModels()
+
+    private var selectedDrink: com.example.drinkdiary.data.Drink? = null
+
+    // Receive edited drink information and update the existing record
+    private val editDrinkLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            val data = result.data
+            val originalDrink = selectedDrink
+
+            if (result.resultCode != android.app.Activity.RESULT_OK ||
+                data == null || originalDrink == null
+            ) return@registerForActivityResult
+
+            val updatedDrink = originalDrink.copy(
+                name = data.getStringExtra("drink_NameInput").orEmpty(),
+                type = data.getStringExtra("drink_typeSpinner").orEmpty(),
+                cafe = data.getStringExtra("cafe_name").orEmpty(),
+                price = data.getDoubleExtra("price_Input", 0.0),
+                rating = data.getIntExtra("drink_rating", 0),
+                wouldOrderAgain = data.getBooleanExtra("switchSelection", false),
+                notes = data.getStringExtra("notes_Input").orEmpty(),
+                allergens = data.getStringArrayListExtra("allergen_Group")
+                    ?: emptyList()
+            )
+
+            viewModel.updateDrink(updatedDrink)
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,6 +76,42 @@ class DrinkDetailFragment : Fragment(R.layout.fragment_drink_detail) {
             if (drink == null) {
                 binding.detailName.text = "Drink not found"
                 return@observe
+            }
+
+            // Confirm before deleting the selected drink
+            binding.buttonDeleteDrink.setOnClickListener {
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Delete Drink")
+                    .setMessage("Are you sure you want to delete ${drink.name}?")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Delete") { _, _ ->
+                        viewModel.deleteDrink(drink)
+                        binding.btnBack.performClick()
+                    }
+                    .show()
+            }
+
+            selectedDrink = drink
+
+// Open the form with the existing drink information
+            binding.buttonEditDrink.setOnClickListener {
+                val intent = Intent(requireContext(), AddDrinkActivity::class.java)
+
+                intent.putExtra("editMode", true)
+                intent.putExtra("drink_NameInput", drink.name)
+                intent.putExtra("drink_typeSpinner", drink.type)
+                intent.putExtra("cafe_name", drink.cafe)
+                intent.putExtra("price_Input", drink.price)
+                intent.putExtra("drink_rating", drink.rating)
+                intent.putExtra("switchSelection", drink.wouldOrderAgain)
+                intent.putExtra("notes_Input", drink.notes)
+
+                intent.putStringArrayListExtra(
+                    "allergen_Group",
+                    ArrayList(drink.allergens)
+                )
+
+                editDrinkLauncher.launch(intent)
             }
 
             binding.detailName.text = drink.name
