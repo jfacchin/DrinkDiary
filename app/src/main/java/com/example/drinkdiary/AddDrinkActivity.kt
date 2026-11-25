@@ -16,6 +16,10 @@ import com.example.drinkdiary.data.Drink
 import android.widget.ArrayAdapter
 import android.content.Intent
 import android.widget.Switch
+import android.net.Uri
+import android.widget.ImageView
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 
 
 class AddDrinkActivity : AppCompatActivity() {
@@ -40,6 +44,9 @@ class AddDrinkActivity : AppCompatActivity() {
         )
         drink_typeSpinner.adapter = drinkTypeAdapter
 
+        var selectedPhotoUri: Uri? = null
+        val drinkPhoto = findViewById<ImageView>(R.id.imageDrinkPhoto)
+        val uploadPhotoBtn = findViewById<Button>(R.id.uploadPhoto)
         val drink_NameInput = findViewById<EditText>(R.id.editTextDrinkName)
         val cafe_Name = findViewById<EditText>(R.id.editTextCafe)
         val price_Input = findViewById<EditText>(R.id.editTextPrice)
@@ -49,13 +56,33 @@ class AddDrinkActivity : AppCompatActivity() {
         val drink_rating = findViewById<EditText>(R.id.editTextRating)
         val switchSelection = findViewById<Switch>(R.id.woaSwitch)
 
-//populating chips from ALLERGENS via data layer
+    //populating chips from ALLERGENS via data layer
         Drink.ALLERGENS.forEach { allergen ->
             val chip = Chip(this)
             chip.text = allergen
             chip.isCheckable = true
             chip.id = View.generateViewId()
             allergen_Group.addView(chip)
+        }
+
+        //creating activity result launcher for the uploaded photos
+        val choosePhoto = registerForActivityResult(ActivityResultContracts.PickVisualMedia()
+        ){uri ->
+            if (uri != null){
+                selectedPhotoUri = uri
+
+                drinkPhoto.setImageURI(uri)
+                uploadPhotoBtn.text = "Change Photo?"
+            }
+        }
+//on click listener for the uploas photo button, this is not where the image is displayed, just the picker
+        uploadPhotoBtn.setOnClickListener {
+            choosePhoto.launch(
+                PickVisualMediaRequest(
+                    ActivityResultContracts.PickVisualMedia.ImageOnly
+                )
+            )
+
         }
 
         save_Button.setOnClickListener {
@@ -100,6 +127,7 @@ class AddDrinkActivity : AppCompatActivity() {
 
             val selectionsIntent = Intent()
             selectionsIntent.putExtra("drink_NameInput",drinkName)
+            selectionsIntent.putExtra("photo_uri", selectedPhotoUri?.toString())
             selectionsIntent.putExtra("cafe_name", cafeName)
             selectionsIntent.putExtra("price_Input", price)
             selectionsIntent.putExtra("drink_typeSpinner",drinkSelection)

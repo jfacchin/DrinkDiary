@@ -88,42 +88,38 @@
 
                         <FrameLayout
                             android:layout_width="130dp"
-                            android:layout_height="145dp"
+                            android:layout_height="175dp"
                             android:layout_marginEnd="8dp"
                             android:clipChildren="false"
                             android:clipToPadding="false">
 
                             <com.google.android.material.card.MaterialCardView
-                                android:layout_width="104dp"
+                                android:layout_width="122dp"
                                 android:layout_height="125dp"
-                                android:layout_gravity="bottom|center_horizontal"
+
                                 app:cardBackgroundColor="@color/drink_sage"
                                 app:cardCornerRadius="24dp"
                                 app:cardElevation="0dp">
 
+
                                 <ImageView
                                     android:id="@+id/imageDrinkPhoto"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="124dp"
                                     android:contentDescription="Choose drink photo"
-                                    android:padding="24dp"
-                                    android:scaleType="fitCenter"
-                                    android:src="@drawable/ic_launcher_foreground"
-                                    app:tint="@color/drink_brown" />
-
+                                    android:scaleType="centerCrop"
+                                    android:padding="10dp"
+                                    android:src="@drawable/ic_launcher_foreground" />
                             </com.google.android.material.card.MaterialCardView>
 
-                            <ImageView
-                                android:layout_width="120dp"
-                                android:layout_height="32dp"
-                                android:layout_gravity="top|center_horizontal"
-                                android:elevation="4dp"
-                                android:importantForAccessibility="no"
-                                android:rotation="-14"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/ribbon"
-                                android:translationX="-6dp"
-                                android:translationY="10dp" />
+                            <Button
+                                android:id="@+id/uploadPhoto"
+                                android:layout_width="115dp"
+                                android:layout_height="43dp"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:text="Upload"
+                                android:textColor="@color/drink_brown" />
+
 
                         </FrameLayout>
 
