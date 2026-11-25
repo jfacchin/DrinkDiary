@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
             // these keys have to match the ones AddDrinkActivity puts in the intent
             val drink = Drink(
+                photoUri = data.getStringExtra("photo_uri"),
                 name = data.getStringExtra("drink_NameInput").orEmpty(),
                 type = data.getStringExtra("drink_typeSpinner").orEmpty(),
                 cafe = data.getStringExtra("cafe_name").orEmpty(),
